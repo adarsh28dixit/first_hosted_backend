@@ -1,7 +1,8 @@
 const Contact = require('../models/contactModel');
 
 const getContacts = async (req, res) => {
-    let response = await Contact.find({});
+    let userId = req.user._id;
+    let response = await Contact.find({userid: userId});
     if (response) {
         res.send(response);
     } else {
@@ -12,8 +13,8 @@ const getContacts = async (req, res) => {
 const createContact = async (req, res) => {
     try {
         const { name, contact } = req.body;
-
-        const contacts = await Contact.insertMany({ name, contact });
+        let userid = req.user._id;
+        const contacts = await Contact.insertMany({ name, contact , userid});
 
         res.status(201).json(contacts);
     } catch (error) {

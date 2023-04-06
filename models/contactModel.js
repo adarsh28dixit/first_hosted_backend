@@ -5,7 +5,7 @@ mongoose.set("strictQuery", false);
 const contactSchema = new mongoose.Schema({
     name: {type: String,  required: false},
     contact: {type: Number, required: false},
-   
+    userid: {type: String, required: false}
 },{timestamps: true})
 
 const Contact = mongoose.model("Contact", contactSchema);
